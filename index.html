@@ -3,6 +3,7 @@
 
 
 
+
 <!doctype html>
 <!-- Oman Academy static landing page - GitHub Pages / single HTML v8 -->
 <html lang="ar" dir="rtl">
@@ -16,6 +17,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#063F6D">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>عمان أكاديمي | كل ما تحتاجه لتتفوق</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1147,6 +1149,133 @@ body{
   .teacher-review-text{font-size:.84rem;line-height:1.9}
 }
 
+
+/* ===== Sample lesson player inside schedule ===== */
+.schedule-mini-actions{
+  justify-self:start;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+}
+.schedule-sample-btn{
+  width:38px;height:38px;
+  padding:0;
+  border:1px solid #B9DDEC;
+  border-radius:12px;
+  background:#EAF6FC;
+  color:#0A67A0;
+  display:inline-grid;
+  place-items:center;
+  font-size:.92rem;
+  font-weight:900;
+  line-height:1;
+  transition:.18s ease;
+  box-shadow:0 5px 14px rgba(10,103,160,.07);
+}
+.schedule-sample-btn:hover{
+  transform:translateY(-2px);
+  background:#DDF1FA;
+  border-color:#88C6DE;
+  box-shadow:0 8px 18px rgba(10,103,160,.14);
+}
+.schedule-sample-btn:focus-visible{outline:3px solid rgba(10,103,160,.22);outline-offset:2px}
+
+.sample-lesson-modal-box{
+  width:min(980px,96vw) !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+.sample-lesson-head{
+  position:relative;
+  padding:24px 72px 17px 24px;
+  text-align:right;
+  background:#fff;
+  border-bottom:1px solid #E4EEF4;
+}
+.sample-lesson-head .close-btn{
+  position:absolute;left:18px;top:18px;
+}
+.sample-lesson-kicker{color:#F39203;font-size:.74rem;font-weight:900;margin-bottom:4px}
+.sample-lesson-head h2{margin:0 !important;color:#063F6D !important;font-size:1.45rem !important}
+.sample-lesson-teacher{margin-top:5px;color:#71869A;font-size:.82rem;font-weight:800}
+.sample-player-shell{
+  position:relative;
+  background:#07131B;
+  aspect-ratio:16/9;
+  overflow:hidden;
+}
+.sample-player-host,.sample-player-host iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.sample-player-empty{
+  position:absolute;inset:0;
+  display:grid;place-items:center;
+  padding:28px;text-align:center;
+  background:radial-gradient(circle at 50% 35%,#12324A 0%,#07131B 65%);
+  color:#DDEBF3;
+}
+.sample-player-empty .empty-inner{max-width:560px}
+.sample-player-empty .empty-play{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;background:#0A67A0;color:#fff;font-size:1.55rem;box-shadow:0 12px 35px rgba(10,103,160,.3)}
+.sample-player-empty strong{display:block;font-size:1rem;color:#fff;margin-bottom:6px}
+.sample-player-empty span{font-size:.78rem;color:#AFC4D0;line-height:1.9}
+
+.sample-player-controls{
+  position:absolute;left:14px;right:14px;bottom:12px;z-index:4;
+  min-height:52px;
+  padding:8px 12px;
+  display:flex;align-items:center;gap:9px;
+  background:rgba(17,39,54,.92);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:15px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 28px rgba(0,0,0,.24);
+}
+.sample-player-controls.hidden{display:none}
+.sample-player-control{
+  width:34px;height:34px;border:0;border-radius:9px;background:transparent;color:#fff;
+  display:grid;place-items:center;font-size:.95rem;padding:0;
+}
+.sample-player-control:hover{background:rgba(255,255,255,.10)}
+.sample-player-time{color:#fff;font-size:.68rem;font-weight:800;min-width:38px;text-align:center;direction:ltr}
+.sample-player-progress{flex:1;accent-color:#F39203;cursor:pointer;min-width:80px}
+.sample-lesson-foot{padding:18px 22px 22px;background:#fff}
+.sample-lesson-foot p{margin:0;color:#71869A;font-size:.78rem;line-height:1.8}
+.sample-lesson-subscribe{
+  margin-top:14px;
+  min-height:50px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:14px;
+  text-decoration:none;
+  background:linear-gradient(135deg,#F39203,#FF8500);
+  color:#fff;
+  font-size:.9rem;font-weight:900;
+  box-shadow:0 10px 24px rgba(243,146,3,.20);
+}
+.registration-player-note{
+  padding:12px 20px 14px;
+  background:#fff;
+}
+.registration-player-note .flash-note{
+  margin-top:0;
+}
+.registration-guide-head{
+  border-bottom:0;
+}
+@media(max-width:760px){
+  .registration-player-note{padding:10px 12px 12px}
+}
+@media(max-width:760px){
+  .schedule-mini-actions{justify-self:end;gap:5px}
+  .schedule-sample-btn{width:40px;height:38px}
+  .sample-lesson-head{padding:18px 56px 13px 15px}
+  .sample-lesson-head .close-btn{left:11px;top:11px}
+  .sample-lesson-head h2{font-size:1.15rem !important}
+  .sample-player-controls{left:7px;right:7px;bottom:7px;padding:6px 7px;gap:5px;border-radius:12px}
+  .sample-player-control{width:30px;height:30px;font-size:.82rem}
+  .sample-player-time{font-size:.6rem;min-width:31px}
+  .sample-lesson-foot{padding:15px}
+}
+
 /* ===== H2 sizing requested for hero and brand title ===== */
 .hero h1{
   font-size:1.5rem !important;
@@ -1224,7 +1353,7 @@ body{
     <span class="info-badge">جدول الحصص</span>
   </div>
 
-  <h3>حصص مباشرة (جدول الحصص)</h3>
+  <h3>جدول الحصص (عينات للشرح)</h3>
 
   <div class="lead">
     مواعيد واضحة وروابط وصول منظمة.
@@ -1266,7 +1395,7 @@ body{
 
 
 
-  <article class="info-card register-guide" onclick="openModal('register-guide-modal')">
+  <article class="info-card register-guide" onclick="openRegistrationGuide()">
     <div class="info-top">
       <div class="info-icon">▶️</div>
       <span class="info-badge">شرح سريع</span>
@@ -1416,23 +1545,82 @@ body{
 
 <!-- Modal: Registration Guide -->
 <div class="modal-overlay" id="register-guide-modal">
-  <div class="modal register-guide-modal-box">
-    <div class="modal-top">
-      <div class="modal-title-wrap"><div class="modal-ico">▶️</div><div><h2>طريقة التسجيل في عمان أكاديمي</h2><div class="modal-sub">شاهد الخطوات كاملة في هذا الفيديو</div></div></div>
-      <button class="close-btn" onclick="closeModal('register-guide-modal')">×</button>
+  <div class="modal register-guide-modal-box sample-lesson-modal-box">
+    <div class="sample-lesson-head registration-guide-head">
+      <button class="close-btn" onclick="closeRegistrationGuide()" aria-label="إغلاق">×</button>
+      <div class="sample-lesson-kicker">شرح خطوات التسجيل</div>
+      <h2>طريقة التسجيل في عمان أكاديمي</h2>
+      <div class="sample-lesson-teacher">شاهد الخطوات كاملة داخل الموقع</div>
     </div>
-    <div class="modal-body">
-      <div class="flash-note block"><span class="icon">⚠️</span><span>توضيح مهم: إذا كنت تستخدم الهاتف أو التابلت، فيجب إتمام التسجيل عبر تطبيق <strong>Google Chrome</strong>.</span></div>
-      <div class="video-frame" style="margin-top:16px;">
-        <iframe src="https://www.youtube.com/embed/CfWJu6v7ml8?rel=0" title="طريقة التسجيل في عمان أكاديمي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="registration-player-note">
+      <div class="flash-note block">
+        <span class="icon">⚠️</span>
+        <span>توضيح مهم: إذا كنت تستخدم الهاتف أو التابلت، فيجب إتمام التسجيل عبر تطبيق <strong>Google Chrome</strong>.</span>
       </div>
-      <div class="modal-actions" style="justify-content:center">
-        <a class="modal-action dark" href="https://youtu.be/CfWJu6v7ml8" target="_blank" rel="noopener noreferrer">فتح الفيديو في YouTube</a>
+    </div>
+
+    <div class="sample-player-shell" id="registrationPlayerShell">
+      <div class="sample-player-host" id="registrationPlayerHost"></div>
+      <div class="sample-player-empty" id="registrationPlayerEmpty">
+        <div class="empty-inner">
+          <div class="empty-play">▶</div>
+          <strong>جاري تجهيز فيديو طريقة التسجيل</strong>
+          <span>سيعمل الفيديو داخل هذه النافذة دون مغادرة موقع عمان أكاديمي.</span>
+        </div>
       </div>
+      <div class="sample-player-controls hidden" id="registrationPlayerControls" dir="ltr">
+        <button type="button" class="sample-player-control" id="registrationPlayPause" aria-label="تشغيل أو إيقاف">▶</button>
+        <span class="sample-player-time" id="registrationCurrentTime">0:00</span>
+        <input id="registrationProgress" class="sample-player-progress" type="range" min="0" max="1000" value="0" aria-label="موضع الفيديو">
+        <span class="sample-player-time" id="registrationDuration">0:00</span>
+        <button type="button" class="sample-player-control" id="registrationMute" aria-label="الصوت">🔊</button>
+        <button type="button" class="sample-player-control" id="registrationFullscreen" aria-label="ملء الشاشة">⛶</button>
+      </div>
+    </div>
+
+    <div class="sample-lesson-foot">
+      <p>شاهد طريقة إنشاء الحساب وإتمام خطوات التسجيل في عمان أكاديمي خطوة بخطوة.</p>
+      <a class="sample-lesson-subscribe" href="https://e.omanacademy.com/login.html">ابدأ التسجيل الآن</a>
     </div>
   </div>
 </div>
 
+
+
+<!-- Modal: Sample Lesson Player -->
+<div class="modal-overlay" id="sample-lesson-modal">
+  <div class="modal sample-lesson-modal-box">
+    <div class="sample-lesson-head">
+      <button class="close-btn" onclick="closeLessonSample()" aria-label="إغلاق">×</button>
+      <div class="sample-lesson-kicker">شاهد أسلوب الشرح قبل الاشتراك</div>
+      <h2 id="sampleLessonTitle">عينة مجانية من الشرح</h2>
+      <div class="sample-lesson-teacher" id="sampleLessonTeacher"></div>
+    </div>
+    <div class="sample-player-shell" id="samplePlayerShell">
+      <div class="sample-player-host" id="samplePlayerHost"></div>
+      <div class="sample-player-empty" id="samplePlayerEmpty">
+        <div class="empty-inner">
+          <div class="empty-play">▶</div>
+          <strong>عينة الشرح ستظهر هنا</strong>
+          <span>أضف رابط YouTube للعينة في بيانات الحصة، وسيعمل الفيديو داخل هذه النافذة بدون مغادرة موقع عمان أكاديمي.</span>
+        </div>
+      </div>
+      <div class="sample-player-controls hidden" id="samplePlayerControls" dir="ltr">
+        <button type="button" class="sample-player-control" id="samplePlayPause" aria-label="تشغيل أو إيقاف">▶</button>
+        <span class="sample-player-time" id="sampleCurrentTime">0:00</span>
+        <input id="sampleProgress" class="sample-player-progress" type="range" min="0" max="1000" value="0" aria-label="موضع الفيديو">
+        <span class="sample-player-time" id="sampleDuration">0:00</span>
+        <button type="button" class="sample-player-control" id="sampleMute" aria-label="الصوت">🔊</button>
+        <button type="button" class="sample-player-control" id="sampleFullscreen" aria-label="ملء الشاشة">⛶</button>
+      </div>
+    </div>
+    <div class="sample-lesson-foot">
+      <p id="sampleLessonText">شاهد نموذجًا من أسلوب الشرح في عمان أكاديمي قبل الاشتراك.</p>
+      <a class="sample-lesson-subscribe" href="https://e.omanacademy.com/login.html">أعجبني الأسلوب — اشترك الآن</a>
+    </div>
+  </div>
+</div>
 
 <!-- Modal: Teacher Reviews -->
 <div class="modal-overlay" id="teacher-reviews-modal">
@@ -1539,14 +1727,22 @@ function closeModal(id){
 }
 document.addEventListener("click",e=>{
   if(e.target.classList.contains("modal-overlay")){
+    const wasSample=e.target.id==="sample-lesson-modal";
+    const wasRegistration=e.target.id==="register-guide-modal";
     e.target.classList.remove("show");
     document.body.style.overflow="";
+    if(wasSample)oaDestroySamplePlayer();
+    if(wasRegistration)oaDestroyRegistrationPlayer();
   }
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){
+    const sampleWasOpen=document.getElementById("sample-lesson-modal")?.classList.contains("show");
+    const registrationWasOpen=document.getElementById("register-guide-modal")?.classList.contains("show");
     document.querySelectorAll(".modal-overlay.show").forEach(x=>x.classList.remove("show"));
     document.body.style.overflow="";
+    if(sampleWasOpen)oaDestroySamplePlayer();
+    if(registrationWasOpen)oaDestroyRegistrationPlayer();
   }
 });
 
@@ -1558,7 +1754,7 @@ const OA_SCHEDULE_DAYS=["الأحد","الاثنين","الثلاثاء","الأ
   جدول الحصص ثابت داخل هذه الصفحة لأن الموقع يعمل على GitHub Pages.
   لتعديل الجدول لاحقًا، عدّل العناصر داخل OA_SCHEDULE_DATA فقط.
   الحقول المتاحة لكل حصة:
-  grade, day, subject, teacher, teacherImg, start, end, type, note, meetUrl, order
+  grade, day, subject, teacher, teacherImg, start, end, type, note, meetUrl, sampleUrl, order
 */
 const OA_TEACHER_REVIEW_ALIASES={
   "أ. رائد فنج":"أ. رائد قبج"
@@ -1663,6 +1859,315 @@ function openTeacherReviews(name){
   openModal("teacher-reviews-modal");
 }
 
+
+/*
+  عينات الشرح:
+  - يمكنك وضع رابط YouTube مباشرة داخل أي حصة عبر sampleUrl.
+  - أو إضافة رابط عام للمادة/الصف داخل OA_SAMPLE_VIDEOS بالمفتاح: "الصف|المادة".
+  مثال:
+  "12|التربية الإسلامية":"https://youtu.be/VIDEO_ID"
+*/
+const OA_SAMPLE_VIDEOS={
+  // "12|التربية الإسلامية":"https://youtu.be/VIDEO_ID"
+};
+
+let oaSamplePlayer=null;
+let oaSampleTimer=null;
+let oaYoutubeApiPromise=null;
+
+function oaSampleKey(grade,subject){
+  return `${String(grade||"").trim()}|${String(subject||"").trim()}`;
+}
+function oaGetSampleUrl(row){
+  const direct=String(row?.sampleUrl||"").trim();
+  return direct || String(OA_SAMPLE_VIDEOS[oaSampleKey(row?.grade,row?.subject)]||"").trim();
+}
+function oaYoutubeId(url){
+  const raw=String(url||"").trim();
+  if(!raw)return "";
+  if(/^[A-Za-z0-9_-]{11}$/.test(raw))return raw;
+  try{
+    const u=new URL(raw,location.href);
+    if(u.hostname.includes("youtu.be")) return u.pathname.split("/").filter(Boolean)[0]||"";
+    if(u.hostname.includes("youtube.com") || u.hostname.includes("youtube-nocookie.com")){
+      if(u.pathname.startsWith("/embed/")) return u.pathname.split("/")[2]||"";
+      if(u.pathname.startsWith("/shorts/")) return u.pathname.split("/")[2]||"";
+      return u.searchParams.get("v")||"";
+    }
+  }catch(e){}
+  const m=raw.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/i);
+  return m?m[1]:"";
+}
+function oaLoadYoutubeApi(){
+  if(window.YT&&window.YT.Player)return Promise.resolve();
+  if(oaYoutubeApiPromise)return oaYoutubeApiPromise;
+  oaYoutubeApiPromise=new Promise((resolve,reject)=>{
+    const prev=window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady=function(){
+      try{if(typeof prev==="function")prev();}catch(e){}
+      resolve();
+    };
+    if(!document.querySelector('script[src*="youtube.com/iframe_api"]')){
+      const s=document.createElement("script");
+      s.src="https://www.youtube.com/iframe_api";
+      s.async=true;
+      s.onerror=()=>reject(new Error("تعذر تحميل YouTube API"));
+      document.head.appendChild(s);
+    }
+    let n=0;
+    const poll=setInterval(()=>{
+      n++;
+      if(window.YT&&window.YT.Player){clearInterval(poll);resolve();}
+      if(n>100){clearInterval(poll);reject(new Error("انتهت مهلة تحميل YouTube API"));}
+    },100);
+  });
+  return oaYoutubeApiPromise;
+}
+function oaFormatTime(sec){
+  sec=Math.max(0,Math.floor(Number(sec)||0));
+  const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;
+  return h?`${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`:`${m}:${String(s).padStart(2,"0")}`;
+}
+function oaSampleUpdateControls(){
+  if(!oaSamplePlayer||typeof oaSamplePlayer.getCurrentTime!=="function")return;
+  try{
+    const cur=oaSamplePlayer.getCurrentTime()||0;
+    const dur=oaSamplePlayer.getDuration()||0;
+    const state=oaSamplePlayer.getPlayerState();
+    const pp=document.getElementById("samplePlayPause");
+    const ct=document.getElementById("sampleCurrentTime");
+    const dt=document.getElementById("sampleDuration");
+    const pr=document.getElementById("sampleProgress");
+    if(pp)pp.textContent=state===1?"❚❚":"▶";
+    if(ct)ct.textContent=oaFormatTime(cur);
+    if(dt)dt.textContent=oaFormatTime(dur);
+    if(pr&&dur>0&&!pr.matches(":active"))pr.value=Math.round((cur/dur)*1000);
+  }catch(e){}
+}
+function oaDestroySamplePlayer(){
+  if(oaSampleTimer){clearInterval(oaSampleTimer);oaSampleTimer=null;}
+  try{if(oaSamplePlayer&&typeof oaSamplePlayer.destroy==="function")oaSamplePlayer.destroy();}catch(e){}
+  oaSamplePlayer=null;
+  const host=document.getElementById("samplePlayerHost");
+  if(host)host.innerHTML="";
+  const controls=document.getElementById("samplePlayerControls");
+  if(controls)controls.classList.add("hidden");
+}
+function openLessonSampleFromButton(btn){
+  if(!btn)return;
+  openLessonSample({
+    grade:btn.dataset.grade||"",
+    subject:btn.dataset.subject||"",
+    teacher:btn.dataset.teacher||"",
+    sampleUrl:btn.dataset.sampleUrl||""
+  });
+}
+async function openLessonSample(row){
+  const subject=String(row?.subject||"المادة").trim();
+  const teacher=String(row?.teacher||"").trim();
+  const url=oaGetSampleUrl(row);
+  const title=document.getElementById("sampleLessonTitle");
+  const teacherEl=document.getElementById("sampleLessonTeacher");
+  const empty=document.getElementById("samplePlayerEmpty");
+  const controls=document.getElementById("samplePlayerControls");
+  if(title)title.textContent=`عينة مجانية — ${subject}`;
+  if(teacherEl)teacherEl.textContent=teacher;
+  oaDestroySamplePlayer();
+  openModal("sample-lesson-modal");
+  const videoId=oaYoutubeId(url);
+  if(!videoId){
+    if(empty){empty.style.display="grid";empty.querySelector("strong").textContent=`سيتم إضافة عينة ${subject} قريبًا`;}
+    return;
+  }
+  if(empty)empty.style.display="none";
+  try{
+    await oaLoadYoutubeApi();
+    oaSamplePlayer=new YT.Player("samplePlayerHost",{
+      videoId,
+      playerVars:{autoplay:1,controls:0,rel:0,playsinline:1,fs:0,iv_load_policy:3,origin:location.origin},
+      events:{
+        onReady:()=>{
+          if(controls)controls.classList.remove("hidden");
+          oaSampleTimer=setInterval(oaSampleUpdateControls,400);
+          oaSampleUpdateControls();
+        },
+        onStateChange:oaSampleUpdateControls,
+        onError:()=>{
+          if(empty){empty.style.display="grid";empty.querySelector("strong").textContent="تعذر تشغيل هذه العينة داخل الصفحة";}
+          if(controls)controls.classList.add("hidden");
+        }
+      }
+    });
+  }catch(e){
+    if(empty){empty.style.display="grid";empty.querySelector("strong").textContent="تعذر تحميل مشغل العينة";}
+  }
+}
+function closeLessonSample(){
+  oaDestroySamplePlayer();
+  closeModal("sample-lesson-modal");
+}
+
+function oaBindSampleControls(){
+  const pp=document.getElementById("samplePlayPause");
+  const mute=document.getElementById("sampleMute");
+  const prog=document.getElementById("sampleProgress");
+  const fs=document.getElementById("sampleFullscreen");
+  if(pp)pp.addEventListener("click",()=>{
+    if(!oaSamplePlayer)return;
+    const state=oaSamplePlayer.getPlayerState();
+    state===1?oaSamplePlayer.pauseVideo():oaSamplePlayer.playVideo();
+  });
+  if(mute)mute.addEventListener("click",()=>{
+    if(!oaSamplePlayer)return;
+    if(oaSamplePlayer.isMuted()){oaSamplePlayer.unMute();mute.textContent="🔊";}else{oaSamplePlayer.mute();mute.textContent="🔇";}
+  });
+  if(prog)prog.addEventListener("input",()=>{
+    if(!oaSamplePlayer)return;
+    const dur=oaSamplePlayer.getDuration()||0;
+    if(dur>0)oaSamplePlayer.seekTo((Number(prog.value)/1000)*dur,true);
+  });
+  if(fs)fs.addEventListener("click",()=>{
+    const shell=document.getElementById("samplePlayerShell");
+    if(!shell)return;
+    if(document.fullscreenElement)document.exitFullscreen?.(); else shell.requestFullscreen?.();
+  });
+}
+document.addEventListener("DOMContentLoaded",oaBindSampleControls);
+
+/* ===== مشغل فيديو طريقة التسجيل - بنفس تجربة مشغل عينات الشرح ===== */
+const OA_REGISTRATION_VIDEO_URL="https://youtu.be/CfWJu6v7ml8";
+let oaRegistrationPlayer=null;
+let oaRegistrationTimer=null;
+
+function oaRegistrationUpdateControls(){
+  if(!oaRegistrationPlayer||typeof oaRegistrationPlayer.getCurrentTime!=="function")return;
+  try{
+    const cur=oaRegistrationPlayer.getCurrentTime()||0;
+    const dur=oaRegistrationPlayer.getDuration()||0;
+    const state=oaRegistrationPlayer.getPlayerState();
+    const pp=document.getElementById("registrationPlayPause");
+    const ct=document.getElementById("registrationCurrentTime");
+    const dt=document.getElementById("registrationDuration");
+    const pr=document.getElementById("registrationProgress");
+    if(pp)pp.textContent=state===1?"❚❚":"▶";
+    if(ct)ct.textContent=oaFormatTime(cur);
+    if(dt)dt.textContent=oaFormatTime(dur);
+    if(pr&&dur>0&&!pr.matches(":active"))pr.value=Math.round((cur/dur)*1000);
+  }catch(e){}
+}
+
+function oaDestroyRegistrationPlayer(){
+  if(oaRegistrationTimer){clearInterval(oaRegistrationTimer);oaRegistrationTimer=null;}
+  try{
+    if(oaRegistrationPlayer&&typeof oaRegistrationPlayer.destroy==="function"){
+      oaRegistrationPlayer.destroy();
+    }
+  }catch(e){}
+  oaRegistrationPlayer=null;
+  const host=document.getElementById("registrationPlayerHost");
+  if(host)host.innerHTML="";
+  const controls=document.getElementById("registrationPlayerControls");
+  if(controls)controls.classList.add("hidden");
+}
+
+async function openRegistrationGuide(){
+  oaDestroyRegistrationPlayer();
+  openModal("register-guide-modal");
+
+  const empty=document.getElementById("registrationPlayerEmpty");
+  const controls=document.getElementById("registrationPlayerControls");
+  const videoId=oaYoutubeId(OA_REGISTRATION_VIDEO_URL);
+
+  if(empty)empty.style.display="grid";
+  if(!videoId){
+    if(empty)empty.querySelector("strong").textContent="تعذر تحديد فيديو طريقة التسجيل";
+    return;
+  }
+
+  try{
+    await oaLoadYoutubeApi();
+    if(empty)empty.style.display="none";
+
+    const playerVars={
+      autoplay:1,
+      controls:0,
+      rel:0,
+      playsinline:1,
+      fs:0,
+      iv_load_policy:3
+    };
+    if(/^https?:$/.test(location.protocol))playerVars.origin=location.origin;
+
+    oaRegistrationPlayer=new YT.Player("registrationPlayerHost",{
+      videoId,
+      playerVars,
+      events:{
+        onReady:()=>{
+          if(controls)controls.classList.remove("hidden");
+          oaRegistrationTimer=setInterval(oaRegistrationUpdateControls,400);
+          oaRegistrationUpdateControls();
+        },
+        onStateChange:oaRegistrationUpdateControls,
+        onError:()=>{
+          if(empty){
+            empty.style.display="grid";
+            empty.querySelector("strong").textContent="تعذر تشغيل فيديو طريقة التسجيل داخل الصفحة";
+          }
+          if(controls)controls.classList.add("hidden");
+        }
+      }
+    });
+  }catch(e){
+    if(empty){
+      empty.style.display="grid";
+      empty.querySelector("strong").textContent="تعذر تحميل مشغل فيديو طريقة التسجيل";
+    }
+  }
+}
+
+function closeRegistrationGuide(){
+  oaDestroyRegistrationPlayer();
+  closeModal("register-guide-modal");
+}
+
+function oaBindRegistrationControls(){
+  const pp=document.getElementById("registrationPlayPause");
+  const mute=document.getElementById("registrationMute");
+  const prog=document.getElementById("registrationProgress");
+  const fs=document.getElementById("registrationFullscreen");
+
+  if(pp)pp.addEventListener("click",()=>{
+    if(!oaRegistrationPlayer)return;
+    const state=oaRegistrationPlayer.getPlayerState();
+    state===1?oaRegistrationPlayer.pauseVideo():oaRegistrationPlayer.playVideo();
+  });
+
+  if(mute)mute.addEventListener("click",()=>{
+    if(!oaRegistrationPlayer)return;
+    if(oaRegistrationPlayer.isMuted()){
+      oaRegistrationPlayer.unMute();
+      mute.textContent="🔊";
+    }else{
+      oaRegistrationPlayer.mute();
+      mute.textContent="🔇";
+    }
+  });
+
+  if(prog)prog.addEventListener("input",()=>{
+    if(!oaRegistrationPlayer)return;
+    const dur=oaRegistrationPlayer.getDuration()||0;
+    if(dur>0)oaRegistrationPlayer.seekTo((Number(prog.value)/1000)*dur,true);
+  });
+
+  if(fs)fs.addEventListener("click",()=>{
+    const shell=document.getElementById("registrationPlayerShell");
+    if(!shell)return;
+    if(document.fullscreenElement)document.exitFullscreen?.();
+    else shell.requestFullscreen?.();
+  });
+}
+document.addEventListener("DOMContentLoaded",oaBindRegistrationControls);
+
 const OA_SCHEDULE_DATA=[
   // ===== الصف العاشر =====
   {grade:"10",day:"الأحد",subject:"الأحياء",teacher:"أ. سالم الجابري",teacherImg:"https://imgur.com/6DO0mYz",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
@@ -1766,7 +2271,10 @@ function renderOmanSchedule(){
           ${teacher?`<div class="schedule-teacher">${teacherImg?`<img src="${esc(teacherImg)}" alt="${esc(teacher)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:""}<span>${esc(teacher)}</span></div>`:""}
         </div>
         <div class="schedule-time">${esc(oaTimeText(x.start,x.end))}</div>
-        ${oaHasTeacherReviews(teacher)?`<button type="button" class="schedule-reviews-btn" onclick='openTeacherReviews(${jsQuote(teacher)})' title="آراء الطلاب عن ${esc(teacher)}"><span class="review-star">★</span><span class="review-label">آراء الطلاب</span></button>`:"<span></span>"}
+        <div class="schedule-mini-actions">
+          <button type="button" class="schedule-sample-btn" data-grade="${esc(x.grade||"")}" data-subject="${esc(x.subject||"")}" data-teacher="${esc(teacher)}" data-sample-url="${esc(oaGetSampleUrl(x))}" onclick="openLessonSampleFromButton(this)" title="تشغيل عينة من الشرح" aria-label="تشغيل عينة من الشرح">▶</button>
+          ${oaHasTeacherReviews(teacher)?`<button type="button" class="schedule-reviews-btn" onclick='openTeacherReviews(${jsQuote(teacher)})' title="آراء الطلاب عن ${esc(teacher)}"><span class="review-star">★</span><span class="review-label">آراء الطلاب</span></button>`:""}
+        </div>
         ${meetUrl?`<a class="schedule-join" href="${esc(meetUrl)}" target="_blank" rel="noopener noreferrer">دخول الحصة</a>`:"<span></span>"}
         ${x.note?`<div class="schedule-note">${esc(x.note)}</div>`:""}
       </div>`;
