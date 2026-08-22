@@ -2,6 +2,7 @@
 
 
 
+
 <!doctype html>
 <!-- Oman Academy static landing page - GitHub Pages / single HTML v8 -->
 <html lang="ar" dir="rtl">
@@ -1025,6 +1026,127 @@ body{
 
 
 
+
+/* ===== Teacher reviews inside schedule ===== */
+.schedule-reviews-btn{
+  justify-self:start;
+  min-width:42px;
+  min-height:38px;
+  padding:0 11px;
+  border:1px solid #F3C77F;
+  border-radius:12px;
+  background:#FFF7EA;
+  color:#F39203;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  font-size:.72rem;
+  font-weight:900;
+  transition:.18s ease;
+  white-space:nowrap;
+}
+.schedule-reviews-btn:hover{
+  transform:translateY(-2px);
+  background:#FFF1D9;
+  box-shadow:0 8px 18px rgba(243,146,3,.16);
+}
+.schedule-reviews-btn .review-star{font-size:1rem;line-height:1}
+.teacher-reviews-modal-box{
+  width:min(980px,96vw) !important;
+  padding:24px 26px 28px !important;
+}
+.teacher-reviews-head{
+  text-align:center;
+  margin:-2px 42px 20px;
+}
+.teacher-reviews-kicker{
+  color:#F39203;
+  font-size:.76rem;
+  font-weight:900;
+  margin-bottom:4px;
+}
+.teacher-reviews-head h2{
+  margin:0 !important;
+  color:#063F6D !important;
+  font-size:1.8rem !important;
+  line-height:1.25;
+}
+.teacher-reviews-teacher{
+  margin-top:5px;
+  color:#70869A;
+  font-size:1rem;
+  font-weight:900;
+}
+.teacher-reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.teacher-review-card{
+  position:relative;
+  min-height:170px;
+  padding:20px 18px 15px;
+  border:1px solid #F2C888;
+  border-radius:20px;
+  background:linear-gradient(180deg,#FFFBF5,#FFFDF9);
+  box-shadow:0 8px 22px rgba(6,63,109,.035);
+}
+.teacher-review-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+.teacher-review-stars{
+  color:#F39203;
+  letter-spacing:1px;
+  font-size:.9rem;
+  white-space:nowrap;
+}
+.teacher-review-num{
+  width:38px;height:38px;
+  border-radius:12px;
+  display:grid;place-items:center;
+  background:#EAF6FC;
+  color:#0A67A0;
+  font-size:.7rem;
+  font-weight:900;
+}
+.teacher-review-text{
+  margin:0;
+  color:#2C4A65;
+  font-size:.93rem;
+  line-height:2;
+  font-weight:800;
+}
+.teacher-review-student{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid #F0E0CA;
+  color:#A0AFBC;
+  font-size:.68rem;
+}
+.teacher-reviews-empty{
+  text-align:center;
+  padding:28px 16px;
+  border:1px dashed #D5E3EC;
+  border-radius:18px;
+  color:#718096;
+  background:#F9FCFE;
+}
+@media(max-width:760px){
+  .schedule-reviews-btn{justify-self:end;min-width:40px;padding:0 9px}
+  .schedule-reviews-btn .review-label{display:none}
+  .teacher-reviews-modal-box{padding:18px 13px 20px !important}
+  .teacher-reviews-head{margin:0 35px 16px}
+  .teacher-reviews-head h2{font-size:1.45rem !important}
+  .teacher-reviews-grid{grid-template-columns:1fr;gap:10px}
+  .teacher-review-card{min-height:auto;padding:16px 14px 13px}
+  .teacher-review-text{font-size:.84rem;line-height:1.9}
+}
+
 /* ===== H2 sizing requested for hero and brand title ===== */
 .hero h1{
   font-size:1.5rem !important;
@@ -1311,6 +1433,20 @@ body{
   </div>
 </div>
 
+
+<!-- Modal: Teacher Reviews -->
+<div class="modal-overlay" id="teacher-reviews-modal">
+  <div class="modal teacher-reviews-modal-box">
+    <button class="close-btn" style="position:absolute;left:18px;top:18px" onclick="closeModal('teacher-reviews-modal')">×</button>
+    <div class="teacher-reviews-head">
+      <div class="teacher-reviews-kicker">تجربة الطلاب مع المعلم</div>
+      <h2>آراء الطلاب</h2>
+      <div class="teacher-reviews-teacher" id="teacherReviewsName"></div>
+    </div>
+    <div class="teacher-reviews-grid" id="teacherReviewsGrid"></div>
+  </div>
+</div>
+
 <!-- Modal: Bank -->
 <div class="modal-overlay" id="bank-modal">
   <div class="modal">
@@ -1384,6 +1520,9 @@ const HOME_SUBJECT_ICONS = {
 function esc(v){
   return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
 }
+function jsQuote(v){
+  return JSON.stringify(String(v??""));
+}
 
 function openModal(id){
   const el=document.getElementById(id);
@@ -1421,6 +1560,109 @@ const OA_SCHEDULE_DAYS=["الأحد","الاثنين","الثلاثاء","الأ
   الحقول المتاحة لكل حصة:
   grade, day, subject, teacher, teacherImg, start, end, type, note, meetUrl, order
 */
+const OA_TEACHER_REVIEW_ALIASES={
+  "أ. رائد فنج":"أ. رائد قبج"
+};
+
+const OA_TEACHER_REVIEWS={
+  "أ. سالم الجابري": [
+    {student:"ملاك الهاشمية",text:"أسلوبه في الأحياء هادئ وواضح، ويشرح الفكرة من الأساس قبل ما يدخل في التفاصيل."},
+    {student:"رؤى الخاطري",text:"شرحه مرتب جدًا، وكل نقطة تكون مرتبطة باللي قبلها، فما أحس أن الدرس متقطع."},
+    {student:"زهراء العجمي",text:"يعرف كيف يحول المعلومة الصعبة إلى خطوات بسيطة، خصوصًا في الرسومات والعمليات الحيوية."},
+    {student:"أروى العربية",text:"أكثر شيء يعجبني أنه يركز على الفهم الحقيقي للمعلومة، ما مجرد حفظ المصطلحات."}
+  ],
+  "أ. أحمد الجابري": [
+    {student:"حور الرواحية",text:"يشرح الفيزياء بطريقة تخليك تفهم ليش نستخدم القانون قبل ما تبدأ تحل."},
+    {student:"الريم الإسماعيلية",text:"يعرف كيف يبسط المسألة ويقسمها خطوات، وهذا يخلي حتى السؤال الطويل أسهل."},
+    {student:"خلود السنخي",text:"أسلوبه واضح في ربط المعطيات بالقانون المناسب، وهذا فرق معي كثير في الحل."},
+    {student:"سلطان البلوشي",text:"ما يكتفي بالنتيجة، يوضح الفكرة وراء الحل عشان تقدر تطبقها على سؤال مختلف."}
+  ],
+  "أ. ناصر الصلتي": [
+    {student:"أحمد البوسعيدي",text:"شرحه للكيمياء منظم جدًا، ويبدأ بالفكرة الأساسية وبعدها يبني عليها بالتدريج."},
+    {student:"سالم العامري",text:"يعرف يوصل المعلومة بطريقة بسيطة، خصوصًا في المسائل اللي تحتاج أكثر من خطوة."},
+    {student:"أنوار الكندية",text:"أحب طريقته في توضيح سبب كل خطوة في الحل بدل الحفظ المباشر."},
+    {student:"سعيد المناني",text:"الشرح يساعدك تربط بين القاعدة والتطبيق، وهذا يخلي المعلومة تثبت أكثر."}
+  ],
+  "أ. سمير الدروشي": [
+    {student:"شهد الحوسنية",text:"أسلوبه في الرياضيات واضح ومباشر، ويشرح الفكرة بطريقة تخليك تعرف من وين تبدأ."},
+    {student:"علي السعدي",text:"يرتب الحل بشكل ممتاز، وهذا يساعدني ما أضيع بين الخطوات في المسائل الطويلة."},
+    {student:"عمر النهاني",text:"يعطي أكثر من طريقة للفهم، فإذا ما فهمت الأسلوب الأول غالبًا الثاني يوضحها."},
+    {student:"رهف الكلبية",text:"شرحه يخليك تعتمد على الفهم والتحليل بدل ما تحفظ خطوات الحل فقط."}
+  ],
+  "أ. رائد قبج": [
+    {student:"منال الشامسية",text:"أسلوبه في الإنجليزي بسيط ومريح ويشرح القاعدة بأمثلة واضحة من الاستخدام الحقيقي."},
+    {student:"نور المعولية",text:"يعرف كيف يوصل الفرق بين القواعد بطريقة سهلة بدون تعقيد أو مصطلحات كثيرة."},
+    {student:"حمد الكعبي",text:"شرحه للكلمات والتراكيب يكون داخل سياق، وهذا يخلي الحفظ أسهل بكثير."},
+    {student:"غالية القرنية",text:"طريقة الشرح تفاعلية وواضحة، وتخليك تعرف كيف تطبق القاعدة بدل ما تحفظها فقط."}
+  ],
+  "أ. قمداد الفارسي": [
+    {student:"طارق اليعربي",text:"يشرح الأحياء بطريقة تخلي الموضوع مترابط في بالك بدل ما يكون معلومات منفصلة."},
+    {student:"شيخة الكنانية",text:"يعتمد كثير على الفهم والرسومات، وهذا يساعد جدًا في تثبيت العمليات والمفاهيم."},
+    {student:"بدر المشرفي",text:"أسلوبه في تبسيط التفاصيل ممتاز، خصوصًا في المواضيع اللي عادة تكون ثقيلة."},
+    {student:"فيصل المقبالي",text:"يعرف يركز على النقاط الأساسية بدون ما يضيع الطالب في تفاصيل غير مهمة."}
+  ],
+  "أ. أنور البلوشي": [
+    {student:"مروان الكندي",text:"أسلوبه في الفيزياء يعتمد على الفهم أولًا، وهذا يخلي اختيار القانون أسهل بكثير."},
+    {student:"ريم الناعبية",text:"يشرح المسألة منطقيًا خطوة خطوة، فتتعلم كيف تفكر قبل ما تبدأ الحساب."},
+    {student:"سارة المحروقية",text:"يعرف كيف يوضح الفكرة حتى لو كانت صعبة ويعيدها بطريقة مختلفة إذا احتجت."},
+    {student:"فاطمة المعمرية",text:"أكثر شيء مميز عنده هو ربط القانون بالموقف نفسه بدل الحفظ المجرد."}
+  ],
+  "أ. هلال الصلتي": [
+    {student:"يحيى الشعيلي",text:"شرحه في الرياضيات مرتب جدًا، ويخليك تفهم تسلسل الخطوات بدون ارتباك."},
+    {student:"هاجر الحرمية",text:"يعرف كيف يبسط الأفكار الصعبة ويحولها إلى خطوات قصيرة وواضحة."},
+    {student:"علي البلوشي",text:"طريقة الحل عنده عملية ومناسبة للاختبار، وفي نفس الوقت تشرح لك ليش كل خطوة موجودة."},
+    {student:"عائشة السيابية",text:"أحب أنه يوضح أكثر من نموذج للسؤال، فتتعلم الفكرة ما سؤال واحد فقط."}
+  ],
+  "أ. محمد الشعيلي": [
+    {student:"عبدالله الزدجالي",text:"أسلوبه في العربي واضح، ويشرح النصوص والنحو بطريقة تخليك تفهم المطلوب من السؤال."},
+    {student:"تسنيم الدرعية",text:"يعرف كيف يبسط القاعدة ويعطي أمثلة مباشرة تساعد على تثبيت الفكرة."},
+    {student:"مازن الذهلي",text:"شرحه منظم وخصوصًا في الأسئلة الكتابية يوضح كيف ترتب الإجابة بشكل صحيح."},
+    {student:"يوسف الشكيلي",text:"يعطيك طريقة للتفكير في السؤال، ما مجرد إجابة جاهزة وهذا يساعد كثير في الاختبار."}
+  ],
+  "أ. نعيم الحضري": [
+    {student:"راشد السناني",text:"يشرح العلوم البيئية بطريقة تربط المواضيع ببعض بدل ما تكون معلومات منفصلة."},
+    {student:"بلقيس العامرية",text:"أسلوبه واضح في شرح الرسومات والبيانات، ويخلي قراءة السؤال أسهل."},
+    {student:"إبراهيم الخروصي",text:"يعرف كيف يحول الموضوع النظري إلى أمثلة قريبة من الواقع، وهذا يساعد على الفهم."},
+    {student:"مريم الجابرية",text:"شرحه منظم ويحدد الفكرة الأساسية في كل جزء، فالمراجعة بعده تكون أسهل."}
+  ],
+  "أ. عائشة الصالحية": [
+    {student:"ناصر الوهيبي",text:"شرحها للتربية الإسلامية مرتب وواضح، وتوصل المعاني والأحكام بطريقة سهلة."},
+    {student:"جود المشايخية",text:"تعرف كيف تبسط الفكرة وتربطها بالمثال، وهذا يساعد على الفهم بدل الحفظ فقط."},
+    {student:"لمى الراشدية",text:"أسلوبها هادئ ومنظم، وكل نقطة تكون واضحة قبل الانتقال للنقطة التالية."},
+    {student:"محمد الحارثي",text:"في الاستدلال والأحكام تشرح طريقة الوصول للإجابة، ما فقط النتيجة النهائية."}
+  ]
+};
+
+function oaReviewTeacherKey(name){
+  const raw=String(name||"").trim();
+  return OA_TEACHER_REVIEW_ALIASES[raw]||raw;
+}
+
+function oaHasTeacherReviews(name){
+  const key=oaReviewTeacherKey(name);
+  return Array.isArray(OA_TEACHER_REVIEWS[key]) && OA_TEACHER_REVIEWS[key].length>0;
+}
+
+function openTeacherReviews(name){
+  const key=oaReviewTeacherKey(name);
+  const reviews=OA_TEACHER_REVIEWS[key]||[];
+  const nameEl=document.getElementById("teacherReviewsName");
+  const grid=document.getElementById("teacherReviewsGrid");
+  if(nameEl) nameEl.textContent=key;
+  if(grid){
+    grid.innerHTML=reviews.length ? reviews.map((r,i)=>`
+      <article class="teacher-review-card">
+        <div class="teacher-review-top">
+          <div class="teacher-review-num">${String(i+1).padStart(2,"0")}</div>
+          <div class="teacher-review-stars">★★★★★</div>
+        </div>
+        <p class="teacher-review-text">“${esc(r.text)}”</p>
+        <div class="teacher-review-student">${esc(r.student)}</div>
+      </article>`).join("") : '<div class="teacher-reviews-empty">سيتم إضافة آراء الطلاب لهذا المعلم قريبًا.</div>';
+  }
+  openModal("teacher-reviews-modal");
+}
+
 const OA_SCHEDULE_DATA=[
   // ===== الصف العاشر =====
   {grade:"10",day:"الأحد",subject:"الأحياء",teacher:"أ. سالم الجابري",teacherImg:"https://imgur.com/6DO0mYz",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
@@ -1430,22 +1672,22 @@ const OA_SCHEDULE_DATA=[
   {grade:"10",day:"السبت",subject:"الفيزياء",teacher:"أ. أحمد الجابري",teacherImg:"https://imgur.com/0kcynCv",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
 
   // ===== الصف الحادي عشر =====
-  {grade:"11",day:"الأحد",subject:"اللغة الإنجليزية",teacher:"أ. رائد فنج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"11",day:"الأحد",subject:"اللغة الإنجليزية",teacher:"أ. رائد قبج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"11",day:"الاثنين",subject:"الرياضيات المتقدمة",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
-  {grade:"11",day:"الثلاثاء",subject:"اللغة العربية",teacher:"",teacherImg:"",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"11",day:"الثلاثاء",subject:"اللغة العربية",teacher:"أ. محمد الشعيلي",teacherImg:"https://imgur.com/g8Bu6lK",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"11",day:"الأربعاء",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/KWJzsbr",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"11",day:"السبت",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/SCRmmOU",start:"10:00 صباحًا",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"11",day:"السبت",subject:"الرياضيات الأساسية",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2},
   {grade:"11",day:"السبت",subject:"الكيمياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:3},
 
   // ===== الصف الثاني عشر - روابط الصور المحدثة =====
-  {grade:"12",day:"الأحد",subject:"علوم بيئية",teacher:"أ. نعيم الحضري",teacherImg:"https://imgur.com/EZwh5x6",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"الأحد",subject:"علوم بيئية",teacher:"أ. نعيم الحضري",teacherImg:"https://imgur.com/FZwh5x6",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"12",day:"الأحد",subject:"اللغة العربية",teacher:"أ. سمير الهادي",teacherImg:"https://imgur.com/qnMbi1h",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2},
   {grade:"12",day:"الاثنين",subject:"التربية الإسلامية",teacher:"أ. عائشة الصالحية",teacherImg:"",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"12",day:"الاثنين",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/KWJzsbr",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2},
-  {grade:"12",day:"الثلاثاء",subject:"الأحياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
-  {grade:"12",day:"الأربعاء",subject:"الكيمياء",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
-  {grade:"12",day:"الخميس",subject:"اللغة الإنجليزية",teacher:"أ. رائد فنج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"الثلاثاء",subject:"الكيمياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"الأربعاء",subject:"الرياضيات المتقدمة",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"الخميس",subject:"اللغة الإنجليزية",teacher:"أ. رائد قبج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
   {grade:"12",day:"السبت",subject:"الرياضيات الأساسية",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"10:00 صباحًا",end:"",type:"حصة إضافية",note:"",meetUrl:"",order:1},
   {grade:"12",day:"السبت",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/SCRmmOU",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2}
 ];
@@ -1524,7 +1766,7 @@ function renderOmanSchedule(){
           ${teacher?`<div class="schedule-teacher">${teacherImg?`<img src="${esc(teacherImg)}" alt="${esc(teacher)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:""}<span>${esc(teacher)}</span></div>`:""}
         </div>
         <div class="schedule-time">${esc(oaTimeText(x.start,x.end))}</div>
-        <div class="schedule-type ${isExtra?"extra":""}">${esc(type)}</div>
+        ${oaHasTeacherReviews(teacher)?`<button type="button" class="schedule-reviews-btn" onclick='openTeacherReviews(${jsQuote(teacher)})' title="آراء الطلاب عن ${esc(teacher)}"><span class="review-star">★</span><span class="review-label">آراء الطلاب</span></button>`:"<span></span>"}
         ${meetUrl?`<a class="schedule-join" href="${esc(meetUrl)}" target="_blank" rel="noopener noreferrer">دخول الحصة</a>`:"<span></span>"}
         ${x.note?`<div class="schedule-note">${esc(x.note)}</div>`:""}
       </div>`;
