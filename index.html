@@ -1206,6 +1206,34 @@ body{
   aspect-ratio:16/9;
   overflow:hidden;
 }
+/* iPhone/iOS fallback: fullscreen-like mode when Fullscreen API is unavailable */
+.sample-player-shell.oa-ios-fullscreen{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100dvh !important;
+  max-width:none !important;
+  max-height:none !important;
+  aspect-ratio:auto !important;
+  z-index:2147483646 !important;
+  border-radius:0 !important;
+  background:#000 !important;
+  margin:0 !important;
+}
+.sample-player-shell.oa-ios-fullscreen .sample-player-controls{
+  left:max(10px,env(safe-area-inset-left)) !important;
+  right:max(10px,env(safe-area-inset-right)) !important;
+  bottom:max(10px,env(safe-area-inset-bottom)) !important;
+}
+body.oa-player-fullscreen-active{
+  overflow:hidden !important;
+  overscroll-behavior:none;
+  touch-action:none;
+}
+@supports not (height:100dvh){
+  .sample-player-shell.oa-ios-fullscreen{height:100vh !important}
+}
+
 .sample-player-host,.sample-player-host iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .sample-player-empty{
   position:absolute;inset:0;
@@ -1737,6 +1765,7 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){
+    document.querySelectorAll(".sample-player-shell.oa-ios-fullscreen").forEach(oaExitPseudoFullscreen);
     const sampleWasOpen=document.getElementById("sample-lesson-modal")?.classList.contains("show");
     const registrationWasOpen=document.getElementById("register-guide-modal")?.classList.contains("show");
     document.querySelectorAll(".modal-overlay.show").forEach(x=>x.classList.remove("show"));
@@ -1952,6 +1981,7 @@ function oaDestroySamplePlayer(){
   if(host)host.innerHTML="";
   const controls=document.getElementById("samplePlayerControls");
   if(controls)controls.classList.add("hidden");
+  oaExitPseudoFullscreen(document.getElementById("samplePlayerShell"));
 }
 function openLessonSampleFromButton(btn){
   if(!btn)return;
@@ -2007,6 +2037,47 @@ function closeLessonSample(){
   closeModal("sample-lesson-modal");
 }
 
+function oaExitPseudoFullscreen(shell){
+  if(shell) shell.classList.remove("oa-ios-fullscreen");
+  document.body.classList.remove("oa-player-fullscreen-active");
+}
+
+async function oaTogglePlayerFullscreen(shell){
+  if(!shell)return;
+
+  /* If we are already in the iPhone fallback mode, exit it. */
+  if(shell.classList.contains("oa-ios-fullscreen")){
+    oaExitPseudoFullscreen(shell);
+    return;
+  }
+
+  /* Exit native fullscreen if it is already active. */
+  const nativeFullscreenElement=document.fullscreenElement||document.webkitFullscreenElement;
+  if(nativeFullscreenElement){
+    try{
+      const exit=document.exitFullscreen||document.webkitExitFullscreen;
+      if(exit) await exit.call(document);
+    }catch(e){}
+    return;
+  }
+
+  /* Desktop/Android/iPad: try the browser's real Fullscreen API first. */
+  const request=shell.requestFullscreen||shell.webkitRequestFullscreen;
+  if(request){
+    try{
+      const result=request.call(shell);
+      if(result&&typeof result.then==="function") await result;
+      return;
+    }catch(e){
+      /* iPhone often rejects/does not support fullscreen on a DIV. */
+    }
+  }
+
+  /* iPhone fallback: occupy the full visible browser viewport. */
+  shell.classList.add("oa-ios-fullscreen");
+  document.body.classList.add("oa-player-fullscreen-active");
+}
+
 function oaBindSampleControls(){
   const pp=document.getElementById("samplePlayPause");
   const mute=document.getElementById("sampleMute");
@@ -2027,9 +2098,7 @@ function oaBindSampleControls(){
     if(dur>0)oaSamplePlayer.seekTo((Number(prog.value)/1000)*dur,true);
   });
   if(fs)fs.addEventListener("click",()=>{
-    const shell=document.getElementById("samplePlayerShell");
-    if(!shell)return;
-    if(document.fullscreenElement)document.exitFullscreen?.(); else shell.requestFullscreen?.();
+    oaTogglePlayerFullscreen(document.getElementById("samplePlayerShell"));
   });
 }
 document.addEventListener("DOMContentLoaded",oaBindSampleControls);
@@ -2068,6 +2137,7 @@ function oaDestroyRegistrationPlayer(){
   if(host)host.innerHTML="";
   const controls=document.getElementById("registrationPlayerControls");
   if(controls)controls.classList.add("hidden");
+  oaExitPseudoFullscreen(document.getElementById("registrationPlayerShell"));
 }
 
 async function openRegistrationGuide(){
@@ -2160,10 +2230,7 @@ function oaBindRegistrationControls(){
   });
 
   if(fs)fs.addEventListener("click",()=>{
-    const shell=document.getElementById("registrationPlayerShell");
-    if(!shell)return;
-    if(document.fullscreenElement)document.exitFullscreen?.();
-    else shell.requestFullscreen?.();
+    oaTogglePlayerFullscreen(document.getElementById("registrationPlayerShell"));
   });
 }
 document.addEventListener("DOMContentLoaded",oaBindRegistrationControls);
