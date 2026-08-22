@@ -1,5 +1,6 @@
 
 
+
 <!doctype html>
 <!-- Oman Academy static landing page - GitHub Pages / single HTML v8 -->
 <html lang="ar" dir="rtl">
@@ -12,6 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#063F6D">
 <title>عمان أكاديمي | تعلّم بذكاء وتقدّم بثبات</title>
 
@@ -894,9 +896,12 @@ body{
 .ambassador-kicker{font-size:.74rem;font-weight:900;color:#F39203;margin-bottom:3px}
 .ambassador-info-grid{display:grid;grid-template-columns:1fr;gap:12px}
 .ambassador-info-box{border:1px solid #D8E7F1;border-radius:20px;padding:18px 20px;background:#FAFCFF}
-.ambassador-info-box h3{margin:0 0 8px;color:#063F6D;font-size:1rem;font-weight:900}
+.ambassador-info-box h3{margin:0 0 8px;color:#063F6D;font-size:1rem;font-weight:900;display:flex;align-items:center;gap:9px}
 .ambassador-info-box p{margin:0;color:#60728A;font-size:.84rem;line-height:1.95}
-.ambassador-info-box.ambassador-note{background:#FFF9F0;border-color:#F6D79E}
+.ambassador-step{width:31px;height:31px;flex:0 0 31px;border-radius:10px;display:inline-grid;place-items:center;background:#EAF5FB;color:#0A67A0;font-size:.82rem;font-weight:1000}
+.ambassador-info-box.ambassador-note{background:#FFF6F4;border-color:#F2B9AF}
+.ambassador-info-box.ambassador-note h3{color:#B42318}
+.ambassador-info-box.ambassador-note p{color:#8A3B32;font-weight:700}
 .ambassador-one-action{margin-top:18px}
 .ambassador-main-btn{display:flex;align-items:center;justify-content:center;min-height:54px;border-radius:15px;padding:0 20px;background:linear-gradient(135deg,#F39203,#FF8200);color:#fff;text-decoration:none;font-weight:900;box-shadow:0 12px 28px rgba(243,146,3,.22)}
 .ambassador-main-btn:hover{transform:translateY(-2px)}
@@ -1266,10 +1271,10 @@ body{
     </div>
     <div class="modal-body">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/CfWJu6v7ml8?rel=0" title="طريقة التسجيل في عمان أكاديمي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/CfWJu6v7ml8?rel=0&playsinline=1" title="طريقة التسجيل في عمان أكاديمي" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
+      <div id="youtubeLocalPreviewNote" style="display:none;margin-top:12px;padding:11px 13px;border:1px solid #f1d27b;border-radius:12px;background:#fff8e8;color:#8a5b00;font-size:.76rem;font-weight:800;line-height:1.7;">هذه معاينة محلية للملف. تشغيل الفيديو داخل الصفحة يحتاج نشرها عبر HTTPS مثل GitHub Pages.</div>
       <div class="modal-actions" style="justify-content:center">
-        <a class="modal-action dark" href="https://youtu.be/CfWJu6v7ml8" target="_blank" rel="noopener noreferrer">فتح الفيديو في YouTube</a>
       </div>
     </div>
   </div>
@@ -1301,9 +1306,9 @@ body{
       <div class="modal-title-wrap">
         <div class="modal-ico ambassador-gift">🎁</div>
         <div>
-          <div class="ambassador-kicker">برنامج السفراء</div>
+          <div class="ambassador-kicker">برنامج السفراء للطلاب</div>
           <h2>كن سفيرًا لعمان أكاديمي</h2>
-          <div class="modal-sub">شارك كودك الخاص مع أصدقائك، وتابع التسجيلات والمكافآت من لوحة تحكم مخصصة لك.</div>
+          <div class="modal-sub">أربع خطوات بسيطة: سجّل، خذ كودك، شاركه مع زملائك، ثم تابع تسجيلاتهم ومكافآتك.</div>
         </div>
       </div>
       <button class="close-btn" onclick="closeModal('ambassador-modal')">×</button>
@@ -1311,20 +1316,24 @@ body{
     <div class="modal-body">
       <div class="ambassador-info-grid">
         <div class="ambassador-info-box">
-          <h3>كيف يعمل البرنامج؟</h3>
-          <p>تحصل على كود سفير خاص بك وتشاركه مع زملائك وأصدقائك. عند استخدام الطالب للكود أثناء الاشتراك وإكمال الدفع بنجاح يتم تسجيل العملية تلقائيًا ضمن حسابك، ويمكنك متابعة ذلك من لوحة تحكم السفراء.</p>
+          <h3><span class="ambassador-step">1</span> سجّل كسفير</h3>
+          <p>افتح صفحة السفراء واضغط على التسجيل. بعد تسجيل بياناتك ستحصل على <strong>كود سفير خاص بك</strong>.</p>
         </div>
         <div class="ambassador-info-box">
-          <h3>مكافآت السفراء</h3>
-          <p>يحصل السفير على مكافآت مقابل الاشتراكات المؤهلة التي تتم باستخدام كوده، وفق شروط برنامج السفراء المعتمدة في عمان أكاديمي.</p>
+          <h3><span class="ambassador-step">2</span> شارك كودك مع زملائك</h3>
+          <p>أرسل كودك لزملائك من طلاب الصفوف <strong>10 و11 و12</strong> الراغبين في الاشتراك في عمان أكاديمي.</p>
         </div>
         <div class="ambassador-info-box">
-          <h3>متابعة سهلة وواضحة</h3>
-          <p>من لوحة التحكم يمكنك متابعة التسجيلات المرتبطة بك، حالة الاستحقاقات، وإحصائيات برنامجك بكل سهولة.</p>
+          <h3><span class="ambassador-step">3</span> زميلك يستخدم الكود عند التسجيل</h3>
+          <p>عند اشتراك زميلك، يكتب <strong>كود السفير الخاص بك</strong> في خانة كود السفير أثناء التسجيل، ثم يُكمل الاشتراك والدفع.</p>
+        </div>
+        <div class="ambassador-info-box">
+          <h3><span class="ambassador-step">4</span> تابع تسجيلاتك ومكافآتك</h3>
+          <p>من نفس صفحة السفراء تستطيع الاستعلام عن التسجيلات المرتبطة بك ومتابعة الاستحقاقات والمكافآت بسهولة.</p>
         </div>
         <div class="ambassador-info-box ambassador-note">
-          <h3>ملاحظات مهمة</h3>
-          <p>يُحتسب الاستحقاق فقط للاشتراكات المكتملة والمؤكدة، ويجب استخدام كود السفير أثناء عملية الاشتراك وفق النظام المعتمد.</p>
+          <h3>⚠️ مهم جدًا</h3>
+          <p>حتى يُحتسب الاشتراك لك، يجب أن يكتب الطالب كودك أثناء التسجيل وأن يكتمل الاشتراك بنجاح. إذا تم التسجيل بدون كود السفير فلا يمكن احتسابه لك ضمن البرنامج.</p>
         </div>
       </div>
 
@@ -1479,5 +1488,14 @@ function loadOmanAcademySchedule(){
 
 </script>
 
+
+<script>
+(function(){
+  if(location.protocol === 'file:'){
+    var n=document.getElementById('youtubeLocalPreviewNote');
+    if(n) n.style.display='block';
+  }
+})();
+</script>
 </body>
 </html>
