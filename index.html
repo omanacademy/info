@@ -1,6 +1,7 @@
 
 
 
+
 <!doctype html>
 <!-- Oman Academy static landing page - GitHub Pages / single HTML v8 -->
 <html lang="ar" dir="rtl">
@@ -13,7 +14,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#063F6D">
 <title>عمان أكاديمي | تعلّم بذكاء وتقدّم بثبات</title>
 
@@ -320,6 +320,26 @@ button{font:inherit;cursor:pointer}
 .info-card .lead{font-weight:900;font-size:.91rem;color:#27364E}
 .info-card .desc{font-size:.78rem;color:var(--muted);line-height:1.8;margin-top:9px}
 .info-card .more{display:inline-flex;align-items:center;gap:5px;margin-top:18px;font-size:.72rem;color:var(--blue);font-weight:900}
+
+.flash-note{
+  margin-top:14px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;
+  border-radius:14px;
+  background:#FFF1F1;
+  border:1px solid #F3B0B0;
+  color:#C62828;
+  font-size:.8rem;
+  font-weight:900;
+  line-height:1.8;
+  animation:flashPulse 1.2s ease-in-out infinite;
+}
+.flash-note.block{display:flex;width:100%;justify-content:center;text-align:center}
+.flash-note .icon{font-size:1rem}
+@keyframes flashPulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(198,40,40,.12);transform:scale(1)}
+  50%{opacity:.78;box-shadow:0 0 0 8px rgba(198,40,40,.08);transform:scale(1.01)}
+}
 
 .chat{--accent:#15965B;--accent-bg:#EAF8F2}
 .parent{--accent:#118E85;--accent-bg:#EAF8F6}
@@ -868,7 +888,7 @@ body{
 .schedule-class:first-of-type{border-top:0}
 .schedule-subject{font-weight:900;color:#113255}
 .schedule-teacher{display:flex;align-items:center;gap:7px;margin-top:4px;color:#75849A;font-size:.7rem;font-weight:700}
-.schedule-teacher img{width:27px;height:27px;border-radius:50%;object-fit:cover;border:1px solid #D8E7F1;background:#F7FBFF}
+.schedule-teacher img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid #D8E7F1;background:#F7FBFF}
 .schedule-time{font-weight:900;color:#0A67A0;line-height:1.6}
 .schedule-type{justify-self:start;padding:5px 9px;border-radius:999px;background:#EAF8F2;color:#16845E;font-size:.68rem;font-weight:900;white-space:nowrap}
 .schedule-type.extra{background:#FFF3E1;color:#B86500}
@@ -896,12 +916,9 @@ body{
 .ambassador-kicker{font-size:.74rem;font-weight:900;color:#F39203;margin-bottom:3px}
 .ambassador-info-grid{display:grid;grid-template-columns:1fr;gap:12px}
 .ambassador-info-box{border:1px solid #D8E7F1;border-radius:20px;padding:18px 20px;background:#FAFCFF}
-.ambassador-info-box h3{margin:0 0 8px;color:#063F6D;font-size:1rem;font-weight:900;display:flex;align-items:center;gap:9px}
+.ambassador-info-box h3{margin:0 0 8px;color:#063F6D;font-size:1rem;font-weight:900}
 .ambassador-info-box p{margin:0;color:#60728A;font-size:.84rem;line-height:1.95}
-.ambassador-step{width:31px;height:31px;flex:0 0 31px;border-radius:10px;display:inline-grid;place-items:center;background:#EAF5FB;color:#0A67A0;font-size:.82rem;font-weight:1000}
-.ambassador-info-box.ambassador-note{background:#FFF6F4;border-color:#F2B9AF}
-.ambassador-info-box.ambassador-note h3{color:#B42318}
-.ambassador-info-box.ambassador-note p{color:#8A3B32;font-weight:700}
+.ambassador-info-box.ambassador-note{background:#FFF9F0;border-color:#F6D79E}
 .ambassador-one-action{margin-top:18px}
 .ambassador-main-btn{display:flex;align-items:center;justify-content:center;min-height:54px;border-radius:15px;padding:0 20px;background:linear-gradient(135deg,#F39203,#FF8200);color:#fff;text-decoration:none;font-weight:900;box-shadow:0 12px 28px rgba(243,146,3,.22)}
 .ambassador-main-btn:hover{transform:translateY(-2px)}
@@ -1006,6 +1023,18 @@ body{
 
 
 
+
+
+/* ===== H2 sizing requested for hero and brand title ===== */
+.hero h1{
+  font-size:1.5rem !important;
+  line-height:1.35 !important;
+  letter-spacing:0 !important;
+}
+.brand strong{
+  font-size:1.5rem !important;
+  line-height:1.3 !important;
+}
 </style>
 </head>
 
@@ -1123,6 +1152,7 @@ body{
     <h3>طريقة التسجيل</h3>
     <div class="lead">شاهد خطوات التسجيل في عمان أكاديمي.</div>
     <div class="desc">فيديو مختصر يوضح لك طريقة التسجيل وإتمام الاشتراك خطوة بخطوة.</div>
+    <div class="flash-note"><span class="icon">⚠️</span><span>مهم: عند التسجيل من الهاتف أو التابلت استخدم تطبيق <strong>Google Chrome</strong>.</span></div>
     <div class="more">مشاهدة طريقة التسجيل ←</div>
   </article>
   <article class="info-card bank" onclick="openModal('bank-modal')">
@@ -1159,7 +1189,7 @@ body{
   <div class="wrap">
     <div class="footer-item">📸 <span dir="ltr">@omanacademy</span></div>
     <div class="footer-item">📞 <span dir="ltr">98044311 • 93111354</span></div>
-    <div class="footer-item">🌐 <span dir="ltr">www.thaber.net</span></div>
+    <div class="footer-item">🌐 <span dir="ltr">omanacademy.com</span></div>
   </div>
 </footer>
 
@@ -1270,11 +1300,12 @@ body{
       <button class="close-btn" onclick="closeModal('register-guide-modal')">×</button>
     </div>
     <div class="modal-body">
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/CfWJu6v7ml8?rel=0&playsinline=1" title="طريقة التسجيل في عمان أكاديمي" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="flash-note block"><span class="icon">⚠️</span><span>توضيح مهم: إذا كنت تستخدم الهاتف أو التابلت، فيجب إتمام التسجيل عبر تطبيق <strong>Google Chrome</strong>.</span></div>
+      <div class="video-frame" style="margin-top:16px;">
+        <iframe src="https://www.youtube.com/embed/CfWJu6v7ml8?rel=0" title="طريقة التسجيل في عمان أكاديمي" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
-      <div id="youtubeLocalPreviewNote" style="display:none;margin-top:12px;padding:11px 13px;border:1px solid #f1d27b;border-radius:12px;background:#fff8e8;color:#8a5b00;font-size:.76rem;font-weight:800;line-height:1.7;">هذه معاينة محلية للملف. تشغيل الفيديو داخل الصفحة يحتاج نشرها عبر HTTPS مثل GitHub Pages.</div>
       <div class="modal-actions" style="justify-content:center">
+        <a class="modal-action dark" href="https://youtu.be/CfWJu6v7ml8" target="_blank" rel="noopener noreferrer">فتح الفيديو في YouTube</a>
       </div>
     </div>
   </div>
@@ -1306,9 +1337,9 @@ body{
       <div class="modal-title-wrap">
         <div class="modal-ico ambassador-gift">🎁</div>
         <div>
-          <div class="ambassador-kicker">برنامج السفراء للطلاب</div>
+          <div class="ambassador-kicker">برنامج السفراء</div>
           <h2>كن سفيرًا لعمان أكاديمي</h2>
-          <div class="modal-sub">أربع خطوات بسيطة: سجّل، خذ كودك، شاركه مع زملائك، ثم تابع تسجيلاتهم ومكافآتك.</div>
+          <div class="modal-sub">شارك كودك الخاص مع أصدقائك، وتابع التسجيلات والمكافآت من لوحة تحكم مخصصة لك.</div>
         </div>
       </div>
       <button class="close-btn" onclick="closeModal('ambassador-modal')">×</button>
@@ -1316,24 +1347,20 @@ body{
     <div class="modal-body">
       <div class="ambassador-info-grid">
         <div class="ambassador-info-box">
-          <h3><span class="ambassador-step">1</span> سجّل كسفير</h3>
-          <p>افتح صفحة السفراء واضغط على التسجيل. بعد تسجيل بياناتك ستحصل على <strong>كود سفير خاص بك</strong>.</p>
+          <h3>كيف يعمل البرنامج؟</h3>
+          <p>تحصل على كود سفير خاص بك وتشاركه مع زملائك وأصدقائك. عند استخدام الطالب للكود أثناء الاشتراك وإكمال الدفع بنجاح يتم تسجيل العملية تلقائيًا ضمن حسابك، ويمكنك متابعة ذلك من لوحة تحكم السفراء.</p>
         </div>
         <div class="ambassador-info-box">
-          <h3><span class="ambassador-step">2</span> شارك كودك مع زملائك</h3>
-          <p>أرسل كودك لزملائك من طلاب الصفوف <strong>10 و11 و12</strong> الراغبين في الاشتراك في عمان أكاديمي.</p>
+          <h3>مكافآت السفراء</h3>
+          <p>يحصل السفير على مكافآت مقابل الاشتراكات المؤهلة التي تتم باستخدام كوده، وفق شروط برنامج السفراء المعتمدة في عمان أكاديمي.</p>
         </div>
         <div class="ambassador-info-box">
-          <h3><span class="ambassador-step">3</span> زميلك يستخدم الكود عند التسجيل</h3>
-          <p>عند اشتراك زميلك، يكتب <strong>كود السفير الخاص بك</strong> في خانة كود السفير أثناء التسجيل، ثم يُكمل الاشتراك والدفع.</p>
-        </div>
-        <div class="ambassador-info-box">
-          <h3><span class="ambassador-step">4</span> تابع تسجيلاتك ومكافآتك</h3>
-          <p>من نفس صفحة السفراء تستطيع الاستعلام عن التسجيلات المرتبطة بك ومتابعة الاستحقاقات والمكافآت بسهولة.</p>
+          <h3>متابعة سهلة وواضحة</h3>
+          <p>من لوحة التحكم يمكنك متابعة التسجيلات المرتبطة بك، حالة الاستحقاقات، وإحصائيات برنامجك بكل سهولة.</p>
         </div>
         <div class="ambassador-info-box ambassador-note">
-          <h3>⚠️ مهم جدًا</h3>
-          <p>حتى يُحتسب الاشتراك لك، يجب أن يكتب الطالب كودك أثناء التسجيل وأن يكتمل الاشتراك بنجاح. إذا تم التسجيل بدون كود السفير فلا يمكن احتسابه لك ضمن البرنامج.</p>
+          <h3>ملاحظات مهمة</h3>
+          <p>يُحتسب الاستحقاق فقط للاشتراكات المكتملة والمؤكدة، ويجب استخدام كود السفير أثناء عملية الاشتراك وفق النظام المعتمد.</p>
         </div>
       </div>
 
@@ -1392,17 +1419,28 @@ const OA_SCHEDULE_DAYS=["الأحد","الاثنين","الثلاثاء","الأ
   جدول الحصص ثابت داخل هذه الصفحة لأن الموقع يعمل على GitHub Pages.
   لتعديل الجدول لاحقًا، عدّل العناصر داخل OA_SCHEDULE_DATA فقط.
   الحقول المتاحة لكل حصة:
-  grade, day, subject, teacher, start, end, type, note, meetUrl, order
+  grade, day, subject, teacher, teacherImg, start, end, type, note, meetUrl, order
 */
 const OA_SCHEDULE_DATA=[
-  // مثال (احذفه أو عدّله عند إدخال الجدول الفعلي):
-  // {grade:"10",day:"الأحد",subject:"الفيزياء",teacher:"أ. اسم المعلم",start:"5:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
-  // {grade:"11",day:"الاثنين",subject:"الكيمياء",teacher:"أ. اسم المعلم",start:"6:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
-  // {grade:"12",day:"الثلاثاء",subject:"الأحياء",teacher:"أ. اسم المعلم",start:"7:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1}
+  // ===== الصف الثاني عشر - بيانات تجريبية من الجدول المرسل =====
+  {grade:"12",day:"الأحد",subject:"علوم بيئية",teacher:"أ. نعيم الحضري",teacherImg:"https://imgur.com/o2u46tC",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"الأحد",subject:"اللغة العربية",teacher:"أ. سمير الهادي",teacherImg:"https://imgur.com/G1CAdlz",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2},
+
+  {grade:"12",day:"الاثنين",subject:"التربية الإسلامية",teacher:"أ. عائشة الصالحية",teacherImg:"https://imgur.com/97ovY3R",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"الاثنين",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/97ovY3R",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2},
+
+  {grade:"12",day:"الثلاثاء",subject:"الأحياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/2MKPOXq",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+
+  {grade:"12",day:"الأربعاء",subject:"الكيمياء",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/eh8Cvl2",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+
+  {grade:"12",day:"الخميس",subject:"اللغة الإنجليزية",teacher:"أ. رائد نجيح",teacherImg:"https://imgur.com/eTmn87U",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:1},
+
+  {grade:"12",day:"السبت",subject:"الرياضيات الأساسية",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/eh8Cvl2",start:"10:00 صباحًا",end:"",type:"حصة إضافية",note:"",meetUrl:"",order:1},
+  {grade:"12",day:"السبت",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/I_l4tc3u",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",order:2}
 ];
 
 let oaScheduleData=OA_SCHEDULE_DATA;
-let oaScheduleSelected="10";
+let oaScheduleSelected="12";
 
 function oaNormalizeDay(v){
   const raw=String(v||"").trim();
@@ -1418,6 +1456,13 @@ function oaTimeText(a,b){
   a=String(a||"").trim();
   b=String(b||"").trim();
   return b?`${a} — ${b}`:a;
+}
+
+function oaTeacherImageUrl(url){
+  const raw=String(url||"").trim();
+  if(!raw)return "";
+  const m=raw.match(/imgur\.com\/(?:gallery\/)?([A-Za-z0-9_]+)/i);
+  return m?`https://i.imgur.com/${m[1]}.jpg`:raw;
 }
 
 function renderOmanScheduleGrades(){
@@ -1460,11 +1505,12 @@ function renderOmanSchedule(){
       const type=String(x.type||"حصة").trim();
       const isExtra=type==="حصة إضافية";
       const teacher=String(x.teacher||"").trim();
+      const teacherImg=oaTeacherImageUrl(x.teacherImg);
       const meetUrl=String(x.meetUrl||"").trim();
       return `<div class="schedule-class">
         <div class="schedule-subject">
           ${esc(x.subject||"")}
-          ${teacher?`<div class="schedule-teacher"><span>${esc(teacher)}</span></div>`:""}
+          ${teacher?`<div class="schedule-teacher">${teacherImg?`<img src="${esc(teacherImg)}" alt="${esc(teacher)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:""}<span>${esc(teacher)}</span></div>`:""}
         </div>
         <div class="schedule-time">${esc(oaTimeText(x.start,x.end))}</div>
         <div class="schedule-type ${isExtra?"extra":""}">${esc(type)}</div>
@@ -1488,14 +1534,5 @@ function loadOmanAcademySchedule(){
 
 </script>
 
-
-<script>
-(function(){
-  if(location.protocol === 'file:'){
-    var n=document.getElementById('youtubeLocalPreviewNote');
-    if(n) n.style.display='block';
-  }
-})();
-</script>
 </body>
 </html>
