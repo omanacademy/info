@@ -4,6 +4,8 @@
 
 
 
+
+
 <!doctype html>
 <!-- Oman Academy static landing page - GitHub Pages / single HTML v8 -->
 <html lang="ar" dir="rtl">
@@ -1383,7 +1385,19 @@ body.oa-player-fullscreen-active{
 
 <section class="info-grid">
 
-  <article class="info-card service-blue" onclick="openModal('schedule-modal')">
+  <article class="info-card register-guide" onclick="openRegistrationGuide()">
+    <div class="info-top">
+      <div class="info-icon">▶️</div>
+      <span class="info-badge">شرح سريع</span>
+    </div>
+    <h3>طريقة التسجيل</h3>
+    <div class="lead">شاهد خطوات التسجيل في عمان أكاديمي.</div>
+    <div class="desc">فيديو مختصر يوضح لك طريقة التسجيل وإتمام الاشتراك خطوة بخطوة.</div>
+    <div class="flash-note"><span class="icon">⚠️</span><span>مهم: عند التسجيل من الهاتف أو التابلت استخدم تطبيق <strong>Google Chrome</strong>.</span></div>
+    <div class="more">مشاهدة طريقة التسجيل ←</div>
+  </article>
+
+<article class="info-card service-blue" onclick="openModal('schedule-modal')">
   <div class="info-top">
     <div class="info-icon">🎥</div>
     <span class="info-badge">جدول الحصص</span>
@@ -1404,7 +1418,7 @@ body.oa-player-fullscreen-active{
   </div>
 </article>
 
-  <article class="info-card service-chat" onclick="openModal('chat-modal')">
+<article class="info-card service-chat" onclick="openModal('chat-modal')">
     <div class="info-top">
       <div class="info-icon">💬</div>
       <span class="info-badge">داخل المنصة</span>
@@ -1415,8 +1429,7 @@ body.oa-player-fullscreen-active{
     <div class="more">اعرف المزيد ←</div>
   </article>
 
-
-  <article class="info-card why" onclick="openModal('features-modal')">
+<article class="info-card why" onclick="openModal('features-modal')">
     <div class="info-top">
       <div class="info-icon">✨</div>
       <span class="info-badge">لماذا عمان أكاديمي؟</span>
@@ -1427,22 +1440,7 @@ body.oa-player-fullscreen-active{
     <div class="more">اكتشف لماذا عمان أكاديمي ←</div>
   </article>
 
-
-
-
-
-  <article class="info-card register-guide" onclick="openRegistrationGuide()">
-    <div class="info-top">
-      <div class="info-icon">▶️</div>
-      <span class="info-badge">شرح سريع</span>
-    </div>
-    <h3>طريقة التسجيل</h3>
-    <div class="lead">شاهد خطوات التسجيل في عمان أكاديمي.</div>
-    <div class="desc">فيديو مختصر يوضح لك طريقة التسجيل وإتمام الاشتراك خطوة بخطوة.</div>
-    <div class="flash-note"><span class="icon">⚠️</span><span>مهم: عند التسجيل من الهاتف أو التابلت استخدم تطبيق <strong>Google Chrome</strong>.</span></div>
-    <div class="more">مشاهدة طريقة التسجيل ←</div>
-  </article>
-  <article class="info-card bank" onclick="openModal('bank-modal')">
+<article class="info-card bank" onclick="openModal('bank-modal')">
     <div class="info-top">
       <div class="info-icon">🏦</div>
       <span class="info-badge">طرق الدفع</span>
@@ -1453,7 +1451,7 @@ body.oa-player-fullscreen-active{
     <div class="more">عرض البيانات ←</div>
   </article>
 
-  <article class="info-card ambassador" onclick="openModal('ambassador-modal')">
+<article class="info-card ambassador" onclick="openModal('ambassador-modal')">
     <div class="info-top">
       <div class="info-icon">🤝</div>
       <span class="info-badge">اربح معنا</span>
@@ -2112,7 +2110,7 @@ function oaBindSampleControls(){
 document.addEventListener("DOMContentLoaded",oaBindSampleControls);
 
 /* ===== مشغل فيديو طريقة التسجيل - بنفس تجربة مشغل عينات الشرح ===== */
-const OA_REGISTRATION_VIDEO_URL="https://youtu.be/CfWJu6v7ml8";
+const OA_REGISTRATION_VIDEO_URL="https://youtu.be/55gS61b1_Bo?si=banS4pC8jSFmjTNd";
 let oaRegistrationPlayer=null;
 let oaRegistrationTimer=null;
 
@@ -2245,31 +2243,31 @@ document.addEventListener("DOMContentLoaded",oaBindRegistrationControls);
 
 const OA_SCHEDULE_DATA=[
   // ===== الصف العاشر =====
-  {grade:"10",day:"الأحد",subject:"الأحياء",teacher:"أ. سالم الجابري",teacherImg:"https://imgur.com/6DO0mYz",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/vBw93LyYptA",order:1},
-  {grade:"10",day:"الاثنين",subject:"الكيمياء",teacher:"",teacherImg:"",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/9BquDbJSqIE",order:1},
-  {grade:"10",day:"الثلاثاء",subject:"اللغة الإنجليزية",teacher:"أ. رائد فنج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/FIpF0IwpOZE",order:1},
-  {grade:"10",day:"الأربعاء",subject:"الرياضيات",teacher:"أ. سمير الدروشي",teacherImg:"https://imgur.com/wKIGAxy",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/B1azWsFJ1iU",order:1},
-  {grade:"10",day:"السبت",subject:"الفيزياء",teacher:"أ. أحمد الجابري",teacherImg:"https://imgur.com/0kcynCv",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/_3OW8Z4XpjE",order:1},
+  {grade:"10",day:"الأحد",subject:"الأحياء",teacher:"أ. سالم الجابري",teacherImg:"https://imgur.com/6DO0mYz",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/vBw93LyYptA",order:1},
+  {grade:"10",day:"الاثنين",subject:"الكيمياء",teacher:"",teacherImg:"",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/9BquDbJSqIE",order:1},
+  {grade:"10",day:"الثلاثاء",subject:"اللغة الإنجليزية",teacher:"أ. رائد فنج",teacherImg:"https://imgur.com/m3um5b1",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/FIpF0IwpOZE",order:1},
+  {grade:"10",day:"الأربعاء",subject:"الرياضيات",teacher:"أ. سمير الدروشي",teacherImg:"https://imgur.com/wKIGAxy",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/B1azWsFJ1iU",order:1},
+  {grade:"10",day:"السبت",subject:"الفيزياء",teacher:"أ. أحمد الجابري",teacherImg:"https://imgur.com/0kcynCv",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/_3OW8Z4XpjE",order:1},
 
   // ===== الصف الحادي عشر =====
-  {grade:"11",day:"الأحد",subject:"اللغة الإنجليزية",teacher:"أ. رائد قبج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/RNLiDbfMYUI",order:1},
-  {grade:"11",day:"الاثنين",subject:"الرياضيات المتقدمة",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/RabQNBIjxgc",order:1},
-  {grade:"11",day:"الثلاثاء",subject:"اللغة العربية",teacher:"أ. محمد الشعيلي",teacherImg:"https://imgur.com/g8Bu6lK",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/bUr6OS4BU8Q",order:1},
-  {grade:"11",day:"الأربعاء",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/KWJzsbr",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/4aysbsNft-Y",order:1},
-  {grade:"11",day:"السبت",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/SCRmmOU",start:"10:00 صباحًا",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/kt0rgrK_5Fc",order:1},
-  {grade:"11",day:"السبت",subject:"الرياضيات الأساسية",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/SsGHeKBqDVo",order:2},
-  {grade:"11",day:"السبت",subject:"الكيمياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/84HZWvgbhhE",order:3},
+  {grade:"11",day:"الأحد",subject:"اللغة الإنجليزية",teacher:"أ. رائد قبج",teacherImg:"https://imgur.com/m3um5b1",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/RNLiDbfMYUI",order:1},
+  {grade:"11",day:"الاثنين",subject:"الرياضيات المتقدمة",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/RabQNBIjxgc",order:1},
+  {grade:"11",day:"الثلاثاء",subject:"اللغة العربية",teacher:"أ. محمد الشعيلي",teacherImg:"https://imgur.com/g8Bu6lK",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/bUr6OS4BU8Q",order:1},
+  {grade:"11",day:"الأربعاء",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/KWJzsbr",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/4aysbsNft-Y",order:1},
+  {grade:"11",day:"الخميس",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/SCRmmOU",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/kt0rgrK_5Fc",order:1},
+  {grade:"11",day:"السبت",subject:"الرياضيات الأساسية",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/SsGHeKBqDVo",order:1},
+  {grade:"11",day:"السبت",subject:"الكيمياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/84HZWvgbhhE",order:2},
 
-  // ===== الصف الثاني عشر - روابط الصور المحدثة =====
-  {grade:"12",day:"الأحد",subject:"علوم بيئية",teacher:"أ. نعيم الحضري",teacherImg:"https://imgur.com/FZwh5x6",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/85aw9Eerfy0",order:1},
-  {grade:"12",day:"الأحد",subject:"اللغة العربية",teacher:"أ. سمير الهادي",teacherImg:"https://imgur.com/qnMbi1h",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/2JvETU3DHTY",order:2},
-  {grade:"12",day:"الاثنين",subject:"التربية الإسلامية",teacher:"أ. عائشة الصالحية",teacherImg:"",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/2JvETU3DHTY",order:1},
-  {grade:"12",day:"الاثنين",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/KWJzsbr",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/Wpx4Pe86A-s",order:2},
-  {grade:"12",day:"الثلاثاء",subject:"الكيمياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/84HZWvgbhhE",order:1},
-  {grade:"12",day:"الأربعاء",subject:"الرياضيات المتقدمة",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/7qdqM0xvQWY",order:1},
-  {grade:"12",day:"الخميس",subject:"اللغة الإنجليزية",teacher:"أ. رائد قبج",teacherImg:"https://imgur.com/m3um5b1",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/QEy6Kn6qBb0",order:1},
+  // ===== الصف الثاني عشر =====
+  {grade:"12",day:"الأحد",subject:"التربية الإسلامية",teacher:"أ. عائشة الصالحية",teacherImg:"",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/2JvETU3DHTY",order:1},
+  {grade:"12",day:"الاثنين",subject:"علوم بيئية",teacher:"أ. نعيم الحضري",teacherImg:"https://imgur.com/FZwh5x6",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/85aw9Eerfy0",order:1},
+  {grade:"12",day:"الاثنين",subject:"الأحياء",teacher:"أ. قمداد الفارسي",teacherImg:"https://imgur.com/KWJzsbr",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/Wpx4Pe86A-s",order:2},
+  {grade:"12",day:"الثلاثاء",subject:"الكيمياء",teacher:"أ. ناصر الصلتي",teacherImg:"https://imgur.com/zALCiCN",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/84HZWvgbhhE",order:1},
+  {grade:"12",day:"الأربعاء",subject:"اللغة العربية",teacher:"أ. سمير الهادي",teacherImg:"https://imgur.com/qnMbi1h",start:"04:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/2JvETU3DHTY",order:1},
+  {grade:"12",day:"الأربعاء",subject:"الرياضيات المتقدمة",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/7qdqM0xvQWY",order:2},
+  {grade:"12",day:"الخميس",subject:"اللغة الإنجليزية",teacher:"أ. رائد قبج",teacherImg:"https://imgur.com/m3um5b1",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/QEy6Kn6qBb0",order:1},
   {grade:"12",day:"السبت",subject:"الرياضيات الأساسية",teacher:"أ. هلال الصلتي",teacherImg:"https://imgur.com/XPnzw1a",start:"10:00 صباحًا",end:"",type:"حصة إضافية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/HrEGq-XcpEU",order:1},
-  {grade:"12",day:"السبت",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/SCRmmOU",start:"08:00 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/Bl1HzFiSv1I",order:2}
+  {grade:"12",day:"السبت",subject:"الفيزياء",teacher:"أ. أنور البلوشي",teacherImg:"https://imgur.com/SCRmmOU",start:"08:30 مساءً",end:"",type:"حصة أساسية",note:"",meetUrl:"",sampleUrl:"https://youtu.be/Bl1HzFiSv1I",order:2}
 ];
 
 let oaScheduleData=OA_SCHEDULE_DATA;
